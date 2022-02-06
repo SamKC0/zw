@@ -13,7 +13,8 @@ export class CategoryService {
 
 
    }
-   getToplist(): Observable<Category[]>{
+
+   getCategories(): Observable<Category[]>{
     return this.http.get(`${environment.API_URL}/category`)
       .pipe(
         map(response => response as Category[])
