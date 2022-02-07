@@ -28,7 +28,9 @@ export class AuthService {
     let provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider).then((result) => {
       // code which runs on success   
-      this.checkAuthState();   
+    this.checkAuthState().then(() => {
+      window.location.reload();
+    })  
       
     }).catch(function(error) {
       // Handle Errors here.
@@ -42,13 +44,33 @@ export class AuthService {
     });
   }
 
-  checkAuthState(){
-    firebase.auth().onAuthStateChanged(user=>{
-      if(user){
-        alert(user.email)
-      }else{
 
-      }
-    })
+// without promise
+  // checkAuthState() {    
+  //   firebase.auth().onAuthStateChanged(user=>{
+  //     if(user){
+  //       // setting user logged state
+  //       localStorage.setItem('userExists', 'true');  
+  //       console.log("test1");                      
+  //     }else{    
+  //       console.log("test2");        
+  //     }
+  //   })
+  //   console.log("test3");
+  // }
+  checkAuthState(): Promise<void> {
+    return new Promise<void>((resolve) => {
+      firebase.auth().onAuthStateChanged(user=>{
+        if(user){
+          // setting user logged state
+          localStorage.setItem('userExists', 'true');  
+          resolve();                      
+        }else{    
+          resolve();         
+        }
+      })
+    });
   }
+
+
 }

@@ -8,14 +8,29 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
+  userExists = false;
+
   constructor(private AuthService: AuthService) { }
 
   ngOnInit(): void {
+    this.checkState();
     
   }
 
   GoogleLogin(){
     this.AuthService.GoogleLogin();
+    
+  }
+
+  checkState(){    
+    if (!localStorage.getItem("userExists")) {      
+      this.userExists = true;
+    }
+  }
+
+  logoutUser(){
+    localStorage.removeItem("userExists");
+    window.location.reload();
   }
 
 }
