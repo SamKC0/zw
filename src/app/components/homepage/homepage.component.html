@@ -1,5 +1,3 @@
-<app-navbar></app-navbar>
-
 <div style=" padding-top: 50px;
   padding-right: 30px;
   padding-bottom: 50px;
@@ -9,7 +7,7 @@
   <div class="col-sm-2" 
   *ngFor="let Category of Category"
   style="background-color: black;">
-  <a href="item/{{Category.category}}">
+  <a href="category/{{Category.category}}">
     <img src={{Category.staticImage}}
     alt="Girl in a jacket" width="100%" height="auto">
   </a>
@@ -17,7 +15,7 @@
 
   <div class="col-sm-2"  
   style="background-color: black;">
-  <a href="categories">
+  <a href="category/all">
     <img src="https://image.similarpng.com/very-thumbnail/2020/06/Logo-Instagram-premium-vector-PNG.png"
     alt="Girl in a jacket" width="100%" height="auto">
   </a>

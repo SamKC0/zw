@@ -1,0 +1,23 @@
+<p>All Categories</p>
+
+<ul class="list-group">
+    <li class="list-group-item"
+    *ngFor="let Category of Category"
+    >
+    <a href="category/{{Category.category}}">
+    {{Category.category}}
+    </a>
+    </li>
+ 
+  </ul>
+
+  <ul class="list-group">
+    <li class="list-group-item"
+    *ngFor="let Item of Item"
+    >
+    <a href="item/{{Item.name}}">
+    {{Item.name}}
+    </a>
+    </li>
+ 
+  </ul>
