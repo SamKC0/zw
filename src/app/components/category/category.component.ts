@@ -35,15 +35,13 @@ export class CategoryComponent implements OnInit {
   AllCategories() {
     this.CategoryService.getAllCategories().subscribe((response: any) => {
       // just add .content to get from page (nested)
-      this.Category = response.content;    
-            
+      this.Category = response.content;           
     })
     }
-  getItems() {
+  getItems() {    
     this.CategoryService.getItemsFromCategorie(this.name).subscribe((response: any) => {
-      // just add .content to get from page (nested)
-      this.Item = response.content;    
-            
+      // just add .content to get from page (nested)      
+      this.Item = response;          
     })
     }
 
