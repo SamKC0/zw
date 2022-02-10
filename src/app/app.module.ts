@@ -10,6 +10,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ItemComponent } from './components/item/item.component';
 import { CategoryComponent } from './components/category/category.component';
+import { AddItemComponent } from './components/add-item/add-item.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { CategoryComponent } from './components/category/category.component';
     HomepageComponent,
     NavbarComponent,
     ItemComponent,
-    CategoryComponent
+    CategoryComponent,
+    AddItemComponent
   ],
   imports: [
     BrowserModule,

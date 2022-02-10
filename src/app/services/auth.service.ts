@@ -59,17 +59,22 @@ export class AuthService {
   //   console.log("test3");
   // }
   checkAuthState(): Promise<void> {
-    return new Promise<void>((resolve) => {
+    return new Promise<void>((resolve, reject) => {
       firebase.auth().onAuthStateChanged(user=>{
         if(user){
           // setting user logged state
           localStorage.setItem('userExists', 'true');  
           resolve();                      
         }else{    
-          resolve();         
+          reject();         
         }
       })
     });
+  }
+
+  logoutUser(){    
+    firebase.auth().signOut();
+     
   }
 
 
