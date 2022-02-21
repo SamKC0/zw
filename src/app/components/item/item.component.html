@@ -1,1 +1,11 @@
-<p>item works! {{Item!.name}}</p>
+<div *ngIf="itemFound">
+    <p>item works! {{Item!.name}}</p>
+    
+</div>
+
+
+
+<div *ngIf="!itemFound">
+Item not found
+
+</div>

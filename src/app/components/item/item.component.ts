@@ -10,6 +10,7 @@ import { ItemService } from 'src/app/services/item.service';
 })
 export class ItemComponent implements OnInit {
 
+  itemFound = true;
   name : any;
   constructor(private route: ActivatedRoute, private ItemService: ItemService) { }
 
@@ -24,8 +25,12 @@ export class ItemComponent implements OnInit {
   getItem() {
     this.ItemService.getItem(this.name).subscribe((response: any) => {
       // just add .content to get from page (nested)
-      this.Item = response;         
-            
+      this.Item = response; 
+    },   
+    err => {
+
+      // item not found
+      this.itemFound = false;
     })
     }
 

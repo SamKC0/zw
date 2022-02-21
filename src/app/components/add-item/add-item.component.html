@@ -1,1 +1,10 @@
-<p>add-item works!</p>
+<form>
+    <label for="name">name:</label><br>
+    <input type="text" id="name" name="name" #name><br>
+    <label for="name">description:</label><br>
+    <input type="text" id="description" name="description" #description><br>
+    <label for="name">category:</label><br>
+    <input type="text" id="category" name="category" #category><br>
+  </form>
+  <div class="btn btn-primary"(click)="addItem(name.value, description.value
+  , category.value)">Add Item</div>

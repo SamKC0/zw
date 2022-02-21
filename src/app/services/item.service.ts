@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Item } from '../model/Item';
+import { Category } from '../model/Category';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -24,15 +25,19 @@ export class ItemService {
   }
 //name: string, description: string, staticImage: string,
 //cat: string[], user:string
-  addItem(){
-          const Item = {name: "name" , description: "description", category:  [      {
-            
-            "category": "Bathroom2",
-            "staticImage": "https://image.similarpng.com/very-thumbnail/2020/06/Logo-Instagram-premium-vector-PNG.png"
+
+// Only need id if not new cat, dont add id if new cat
+  addItem(name: string, description: string, id : string, category: string,
+    image: string){
+          const Item = {name: name , description: description, category:  [      {
+            "id" : id,
+            "category": category,
+            "staticImage": image
         }]
         , username: "troll" };
           return this.http.post(`${environment.API_URL}/item/new`, Item)
           
         }
+
 
 }
