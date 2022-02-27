@@ -1,6 +1,16 @@
 <div *ngIf="itemFound">
     <p>item works! {{Item!.name}}</p>
     
+    <form>
+        <label for="rating">Rating:</label><br>
+        <input type="text" id="rating" name="rating" #rating><br>
+        <label for="comment">Comment:</label><br>
+        <input type="text" id="comment" name="comment" #comment><br>
+      </form>
+      <div class="btn btn-primary"(click)="addRating(rating.value)"> Rate </div> <br><br>
+      <div class="btn btn-primary"(click)="addComment(comment.value)"> Comment </div>
+
+    
 </div>
 
 

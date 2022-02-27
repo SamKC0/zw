@@ -4,13 +4,14 @@ import { Category } from '../model/Category';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ItemService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private AuthService: AuthService) {
 
 
    }
@@ -38,6 +39,29 @@ export class ItemService {
           return this.http.post(`${environment.API_URL}/item/new`, Item)
           
         }
-
+  addRating(id: string, rating: string ){
+    alert("2");
+          // this.AuthService.generateToken().then((result) => {
+          //   // continue
+          //   alert(result + " result");
+          //   const content = {itemId : id , rating: rating , userToken : result };
+          //   return this.http.post(`${environment.API_URL}/item/rate`, content)
+  
+          //  },   
+          // err => {
+          //   alert("4");
+          //   //error
+          //  });
+          
+        }
+  async addComment(id: string, comment: string ){
+    const token = await this.AuthService.generateToken();
+    const formData = new FormData();
+    formData.append("itemId", id);      
+    formData.append("comment", comment);      
+    formData.append("userToken", token);      
+    return this.http.post(`${environment.API_URL}/item/comment`, formData)
+    
+  }
 
 }

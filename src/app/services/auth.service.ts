@@ -73,9 +73,48 @@ export class AuthService {
   }
 
   logoutUser(){    
-    firebase.auth().signOut();
-     
+    firebase.auth().signOut(); 
   }
 
+  generateToken2(): Promise<string>  {
+    alert("4.5");
+    return new Promise<string>((resolve, reject) => {
+      
+      // TODO: this function is not catching error.
+    // firebase.auth().currentUser?.getIdToken().then(function(idToken) {
+    //   alert(5);
+    // }).catch(function(error) {
+    //   // Handle error
+    //   alert(6 + "error");
+
+    // }
+
+    // attempt 2
+    // firebase.auth().currentUser?.getIdToken().then((result) => {
+    //   alert("works.")
+    // },   
+    // err => {
+    //   alert("error");
+    //   //error
+    //  }
+    // );
+    
+
+})
+}
+
+// its executing not syncronaklly.
+generateToken()  {
+  return new Promise<string>((resolve, reject) => {
+    firebase.auth().onAuthStateChanged(async user=>{
+      if(user){
+        const token = await user.getIdToken();
+        resolve(token);
+      }
+        reject("false");
+  })
+  })
+
+}
 
 }

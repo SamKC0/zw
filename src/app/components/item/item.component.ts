@@ -34,4 +34,18 @@ export class ItemComponent implements OnInit {
     })
     }
 
+    addRating(rating:string){
+      this.ItemService.addRating(this.Item!.id , rating);
+    }
+    async addComment(comment:string){
+      (await this.ItemService.addComment(this.Item!.id, comment)).subscribe(
+        (response) => {
+        alert("res");
+        },
+        err => {
+          alert(JSON.stringify(err));
+        })
+     
+    }
+
 }
