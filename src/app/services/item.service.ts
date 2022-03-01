@@ -60,7 +60,7 @@ export class ItemService {
     formData.append("itemId", id);      
     formData.append("comment", comment);      
     formData.append("userToken", token);      
-    return this.http.post(`${environment.API_URL}/item/comment`, formData)
+    return this.http.post(`${environment.API_URL}/item/comment`, formData);
     
   }
 

@@ -28,7 +28,6 @@ export class ItemComponent implements OnInit {
       this.Item = response; 
     },   
     err => {
-
       // item not found
       this.itemFound = false;
     })

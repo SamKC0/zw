@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth'; 
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor() { }
+  constructor(private UserService: UserService) { }
 
   ngOnInit(): void {
 
@@ -29,6 +30,7 @@ export class AuthService {
     firebase.auth().signInWithPopup(provider).then((result) => {
       // code which runs on success   
     this.checkAuthState().then(() => {
+      this.saveUsertoDB();
       window.location.reload();
     })  
       
@@ -115,6 +117,11 @@ generateToken()  {
   })
   })
 
+}
+
+async saveUsertoDB(){
+  var token:string = await this.generateToken();
+  this.UserService.addUser(token);
 }
 
 }
