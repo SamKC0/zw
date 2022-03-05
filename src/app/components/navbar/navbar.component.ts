@@ -8,12 +8,12 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
-  userExists?: boolean;
+  userExists?: string;
 
   constructor(private AuthService: AuthService) { }
 
   ngOnInit(): void {
-    this.checkState();
+   this.checkState();
     
   }
 
@@ -29,10 +29,10 @@ export class NavbarComponent implements OnInit {
      this.AuthService.checkAuthState()
      .then((res) => {    
          //user exists         
-         this.userExists = true;
+         this.userExists = "true";
      }).catch((err) => {
         // user doesnt exist        
-        this.userExists = false;
+        this.userExists = "false";
      } );
   }
 
