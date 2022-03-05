@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
+import { Post } from '../model/Post';
 
 @Injectable({
   providedIn: 'root'
@@ -54,14 +55,21 @@ export class ItemService {
           //  });
           
         }
-  async addComment(id: string, comment: string ){
+  async addComment(id: string, comment: string, parentId: string | null){
     const token = await this.AuthService.generateToken();
     const formData = new FormData();
+    if (parentId!=null){
+    formData.append("parentId", parentId);
+    }
     formData.append("itemId", id);      
     formData.append("comment", comment);      
     formData.append("userToken", token);      
     return this.http.post(`${environment.API_URL}/item/comment`, formData);
     
+  }
+
+  getComments(item: string): Observable<Post[]>{
+        return this.http.get<Post[]>(`${environment.API_URL}/item/comment/${item}`);
   }
 
 }

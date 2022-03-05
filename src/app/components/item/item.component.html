@@ -8,8 +8,19 @@
         <input type="text" id="comment" name="comment" #comment><br>
       </form>
       <div class="btn btn-primary"(click)="addRating(rating.value)"> Rate </div> <br><br>
-      <div class="btn btn-primary"(click)="addComment(comment.value)"> Comment </div>
+      <div class="btn btn-primary"(click)="addComment(comment.value, null)"> Comment </div>
 
+
+      <ul class="list-group">
+        <li class="list-group-item"
+        *ngFor="let Post of Post"
+        >
+        {{Post.content}}
+        <div class="btn btn-primary"(click)="addComment(comment.value, Post.id)"> Comment </div>
+
+        </li>
+     
+      </ul>
     
 </div>
 
