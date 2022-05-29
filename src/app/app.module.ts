@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ItemComponent } from './components/item/item.component';
 import { CategoryComponent } from './components/category/category.component';
 import { AddItemComponent } from './components/add-item/add-item.component';
+import { CommentComponent } from './components/comment/comment.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { AddItemComponent } from './components/add-item/add-item.component';
     NavbarComponent,
     ItemComponent,
     CategoryComponent,
-    AddItemComponent
+    AddItemComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,

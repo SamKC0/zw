@@ -15,8 +15,8 @@
         <li class="list-group-item"
         *ngFor="let Post of Post"
         >
-        {{Post.content}}
-        <div class="btn btn-primary"(click)="addComment(comment.value, Post.id)"> Comment </div>
+        <app-comment [post]="Post" [itemId] = Item!.id></app-comment>
+
 
         </li>
      

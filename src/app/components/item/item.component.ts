@@ -11,7 +11,7 @@ import { ItemService } from 'src/app/services/item.service';
 })
 export class ItemComponent implements OnInit {
 
-  itemFound = true;
+  itemFound = false;
   name : any;
   constructor(private route: ActivatedRoute, private ItemService: ItemService) { }
 
@@ -25,40 +25,40 @@ export class ItemComponent implements OnInit {
     this.getItem();
   }
   getItem() {
+    
     this.ItemService.getItem(this.name).subscribe((response: any) => {
       // just add .content to get from page (nested)
+      this.itemFound = true;
       this.Item = response; 
       this.getComments();
     },   
     err => {
       // item not found
-      this.itemFound = false;
     })
     }
 
-    addRating(rating:string){
-      this.ItemService.addRating(this.Item!.id , rating);
-    }
+    async addRating(rating:string){
+      (await this.ItemService.addRating(this.Item!.id, rating)).subscribe(
+        (response) => {
+        alert("res");
+        },
+        err => {
+          alert(JSON.stringify(err));
+        })    }
+
+        
     async addComment(comment:string, parentId: string | null){
       (await this.ItemService.addComment(this.Item!.id, comment, parentId)).subscribe(
         (response) => {
         alert("res");
         },
         err => {
-          alert(JSON.stringify(err));
+          // alert(JSON.stringify(err));
+          alert("err");
         })
      
     }
-    async addReply(comment:string, parentId: string){
-      (await this.ItemService.addComment(this.Item!.id, comment, parentId)).subscribe(
-        (response) => {
-        alert("res");
-        },
-        err => {
-          alert(JSON.stringify(err));
-        })
-     
-    }
+
 
     getComments() {    
       this.ItemService.getComments(this.Item!.id).subscribe((response: any) => {
