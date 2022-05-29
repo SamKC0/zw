@@ -1,0 +1,12 @@
+
+
+{{post.content}}
+<form>
+    <label for="comment">Comment:</label><br>
+    <input type="text" id="comment" name="comment" #comment><br>
+  </form>
+<div class="btn btn-primary"(click)="addComment(comment.value, post.id)"> Reply </div>
+
+<div *ngFor="let comment of post.comments">
+    <app-comment [post]="comment"></app-comment>
+</div>
