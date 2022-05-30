@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
@@ -9,14 +9,13 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  addUser(token : string){
-    const formData = new FormData();    
-    formData.append("userToken", token);  
-    return this.http.post(`${environment.API_URL}/user`, formData).subscribe((response: any) => {
+  addUser(token: { headers: HttpHeaders; }){
+
+    return this.http.post(`${environment.API_URL}/user`, null, token).subscribe((response: any) => {
       alert("success");
     },   
     err => {
-      alert("success");
+      alert(JSON.stringify(err));
     })
   }
 

@@ -35,24 +35,25 @@ export class ItemService {
 //cat: string[], user:string
 
 // Only need id if not new cat, dont add id if new cat
-  addItem(name: string, description: string, id : string, category: string,
+  async addItem(name: string, description: string, id : string, category: string,
     image: string){
+      const token =  await this.getAuthHeader();
+
           const Item = {name: name , description: description, category:  [      {
             "id" : id,
             "category": category,
             "staticImage": image
         }]
-        , username: "troll" };
-          return this.http.post(`${environment.API_URL}/item/new`, Item)
+         };
+          return this.http.post(`${environment.API_URL}/item/new`, Item, token)
           
         }
   async addRating(id: string, rating: string ){
-    const token = await this.AuthService.generateToken();
+    const token =  await this.getAuthHeader();
     const formData = new FormData();
     formData.append("itemId", id);      
     formData.append("rating", rating);      
-    formData.append("userToken", token);      
-    return this.http.post(`${environment.API_URL}/item/rate`, formData);
+    return this.http.post(`${environment.API_URL}/item/rate`, formData, token);
     }
     
   async addComment(id: string, comment: string, parentId: string | null){

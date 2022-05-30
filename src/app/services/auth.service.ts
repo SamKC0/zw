@@ -1,3 +1,4 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth'; 
@@ -121,7 +122,12 @@ generateToken()  {
 
 async saveUsertoDB(){
   var token:string = await this.generateToken();
-  this.UserService.addUser(token);
+  const httpOptions = {
+    headers: new HttpHeaders({
+     "X-Auth": token
+    })
+  };
+  this.UserService.addUser(httpOptions);
 }
 
 }

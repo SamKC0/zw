@@ -24,7 +24,7 @@ export class AddItemComponent implements OnInit {
     })
     }
 
-  addItem(name: string, description: string, category: string){
+  async addItem(name: string, description: string, category: string){
     var id = "null";
     const image = "";
     for (let cat of this.Category!){
@@ -32,7 +32,7 @@ export class AddItemComponent implements OnInit {
         id = cat.id;
       }
     }
-    this.ItemService.addItem(name, description, id, category, image ).subscribe(
+    (await this.ItemService.addItem(name, description, id, category, image)).subscribe(
       (response) => {
       alert("res");
       },
